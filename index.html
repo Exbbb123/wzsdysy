@@ -1,28 +1,53 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <meta charset="UTF-8">
+    <title>温州市鼎源塑业有限公司</title>
+    <meta name='Keywords' content='温州市鼎源塑业有限公司，温州市鼎源塑业，温州鼎源塑业，张岳春 13906659180'>
+    <meta name='Description' content='温州市鼎源塑业 地址：浙江省温州市上江集云山路28号 联系电话：张岳春 13906659180'>
+    <meta name="google-site-verification" content="nBFl-ZJ7Euk7A-MsfDfmVYn1Mdjlh0ete5gkGjgKRTo" />
+    <meta name="baidu-site-verification" content="hN55yHf9nU" />
 	<style type="text/css">
-	body, html,#allmap {width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
+	body, html,#allmap {
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+		margin:0;
+		font-family:"微软雅黑";}
 	</style>
 	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=xDiVf4cyhIktQmpRUxSPRUrU7d7dqoRA"></script>
-	<title>地图展示</title>
+
 </head>
 <body>
 	<div id="allmap"></div>
 </body>
 </html>
 <script type="text/javascript">
+
 	// 百度地图API功能
-	var map = new BMap.Map("allmap");    // 创建Map实例
-	map.centerAndZoom(new BMap.Point(116.404, 39.915), 11);  // 初始化地图,设置中心点坐标和地图级别
-	//添加地图类型控件
-	map.addControl(new BMap.MapTypeControl({
-		mapTypes:[
-            BMAP_NORMAL_MAP,
-            BMAP_HYBRID_MAP
-        ]}));	  
-	map.setCurrentCity("北京");          // 设置地图显示的城市 此项是必须设置的
+	var map = new BMap.Map("allmap",{minZoom:16,maxZoom:19});    // 创建Map实例
+	var point = new BMap.Point(120.727525, 27.99375);  //创建点实例
+	map.centerAndZoom(point, 19);  // 初始化地图,设置中心点坐标和地图级别
+	
+	//创建新图标
+	var myIcon = new BMap.Icon("picture/buiding.png", new BMap.Size(25,25));
+	var marker = new BMap.Marker(point,{icon:myIcon});  // 创建标注
+	map.addOverlay(marker);   // 将标注添加到地图中
+	
+	var label = new BMap.Label("温州市鼎源塑业有限公司",{offset:new BMap.Size(26,-8)});
+		label.setStyle({
+			border : "none",
+			background : "rgba(0,0,0,0)",
+			color : "#2c2c2c",
+			fontSize : "13px",
+			height : "20px",
+			lineHeight : "20px",
+			fontFamily:"微软雅黑"
+			});
+	marker.setLabel(label);
+	
+	map.setCurrentCity("温州");          // 设置地图显示的城市 此项是必须设置的
 	map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
+	
+
 </script>
