@@ -22,7 +22,6 @@
 </body>
 </html>
 <script type="text/javascript">
-
 	//百度地图API功能
 	function loadJScript() {
 		var script = document.createElement("script");
@@ -30,17 +29,14 @@
 		script.src="https://api.map.baidu.com/api?v=2.0&ak=xDiVf4cyhIktQmpRUxSPRUrU7d7dqoRA&callback=init";
 		document.body.appendChild(script);
 	}
+	
 	function init() {	
-
 	var map = new BMap.Map("allmap",{minZoom:16,maxZoom:19});    // 创建Map实例
 	var point = new BMap.Point(120.727525, 27.99375);  //创建点实例
+	var myIcon = new BMap.Icon("picture/buiding.png", new BMap.Size(25,25));	//创建新图标
 	map.centerAndZoom(point, 19);  // 初始化地图,设置中心点坐标和地图级别
-	
-	//创建新图标
-	var myIcon = new BMap.Icon("picture/buiding.png", new BMap.Size(25,25));
 	var marker = new BMap.Marker(point,{icon:myIcon});  // 创建标注
 	map.addOverlay(marker);   // 将标注添加到地图中
-	
 	var label = new BMap.Label("温州市鼎源塑业有限公司",{offset:new BMap.Size(26,-8)});
 		label.setStyle({
 			border : "none",
@@ -52,10 +48,10 @@
 			fontFamily:"微软雅黑"
 			});
 	marker.setLabel(label);
-	
 	map.setCurrentCity("温州");          // 设置地图显示的城市
 	map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
 	}
 	
 	window.onload = loadJScript;  //异步加载地图
+	
 </script>
