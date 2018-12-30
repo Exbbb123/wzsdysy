@@ -7,6 +7,7 @@
     <meta name='Description' content='温州市鼎源塑业 地址：浙江省温州市上江集云山路28号 联系电话：张岳春 13906659180'>
     <meta name="google-site-verification" content="nBFl-ZJ7Euk7A-MsfDfmVYn1Mdjlh0ete5gkGjgKRTo" />
     <meta name="baidu-site-verification" content="hN55yHf9nU" />
+	<script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=xDiVf4cyhIktQmpRUxSPRUrU7d7dqoRA"></script>
 	<style type="text/css">
 	body, html,#allmap {
 		width: 100%;
@@ -23,21 +24,13 @@
 </html>
 <script type="text/javascript">
 	//百度地图API功能
-	function loadJScript() {
-		var script = document.createElement("script");
-		script.type = "text/javascript";
-		script.src="https://api.map.baidu.com/api?v=2.0&ak=xDiVf4cyhIktQmpRUxSPRUrU7d7dqoRA&callback=init";
-		document.body.appendChild(script);
-	}
-	
-	function init() {	
 	var map = new BMap.Map("allmap",{minZoom:16,maxZoom:19});    // 创建Map实例
-	var point = new BMap.Point(120.727525, 27.99375);  //创建点实例
-	var myIcon = new BMap.Icon("picture/buiding.png", new BMap.Size(25,25));	//创建新图标
-	map.centerAndZoom(point, 19);  // 初始化地图,设置中心点坐标和地图级别
+	var point = new BMap.Point(120.727525, 27.99388);  //创建点实例
+	map.centerAndZoom(new BMap.Point(120.727525, 27.99400), 19);  // 初始化地图,设置中心点坐标和地图级别
+	var myIcon = new BMap.Icon("picture/key.gif", new BMap.Size(25,75));	//创建新图标
 	var marker = new BMap.Marker(point,{icon:myIcon});  // 创建标注
 	map.addOverlay(marker);   // 将标注添加到地图中
-	var label = new BMap.Label("温州市鼎源塑业有限公司",{offset:new BMap.Size(26,-8)});
+	var label = new BMap.Label("温州市鼎源塑业有限公司",{offset:new BMap.Size(26,40)});
 		label.setStyle({
 			border : "none",
 			background : "rgba(0,0,0,0)",
@@ -48,10 +41,17 @@
 			fontFamily:"微软雅黑"
 			});
 	marker.setLabel(label);
+	var sContent =
+	"<h4 style='margin:0 0 5px 0;padding:0.2em 0'>温州市鼎源塑业有限公司</h4>" + 
+	"<img style='float:right;margin:4px' id='imgDemo' src='img-0.jpg' width='139' height='104' title='天安门'/>" + 
+	"<p style='width:445px;margin:10px 0 0 0;line-height:1.5;font-size:13px'>公司地址：浙江省温州市上江集云山路28号<br>联系电话：13906659180 张岳春</p>" + 
+	"</div>";
+	var infoWindow = new BMap.InfoWindow(sContent);
+	marker.addEventListener("click", function(){          
+		this.openInfoWindow(infoWindow); //图片加载完毕重绘infowindow
+		});
 	map.setCurrentCity("温州");          // 设置地图显示的城市
 	map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
-	}
-	
-	window.onload = loadJScript;  //异步加载地图
 	
 </script>
+<script type="text/javascript" src="js/Control.js"></script>
